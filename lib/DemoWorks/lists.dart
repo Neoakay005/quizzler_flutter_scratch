@@ -1,7 +1,7 @@
+// ignore_for_file: avoid_print
+
 void main() {
-  List<String> myList = [
-    "Halil", "Akay", "Mustafa", "Ömer",
-  ];
+  List<String> myList = ["Halil", "Akay", "Mustafa", "Ömer"];
   //print out the 4th item
   print(myList[3]);
 
