@@ -34,6 +34,18 @@ class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [
     //Icon(Icons.check, color: Colors.green),
   ];
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = quizBrain.getQuestionAnswer();
+
+    setState(() {
+      if (userPickedAnswer == correctAnswer) {
+        scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+      } else {
+        scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+      }
+      quizBrain.nextQuestion();
+    });
+  }
 
   //----------------
   @override
@@ -65,16 +77,7 @@ class _QuizPageState extends State<QuizPage> {
                 textStyle: const TextStyle(fontSize: 20.0),
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.getQuestionAnswer();
-
-                if (correctAnswer == true) {
-                  print("Your choise is correct!");
-                } else {
-                  print("Your choise isn't correct!");
-                }
-                setState(() {
-                  quizBrain.nextQuestion();
-                });
+                checkAnswer(true);
               },
               child: const Text('True'),
             ),
@@ -90,15 +93,7 @@ class _QuizPageState extends State<QuizPage> {
                 textStyle: const TextStyle(fontSize: 20.0),
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.getQuestionAnswer();
-                if (correctAnswer == false) {
-                  print("Your choise is correct!");
-                } else {
-                  print("Your choise isn't correct!");
-                }
-                setState(() {
-                  quizBrain.nextQuestion();
-                });
+                checkAnswer(false);
               },
               child: const Text('False'),
             ),
